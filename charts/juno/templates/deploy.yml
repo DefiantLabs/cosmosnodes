@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: juno
+spec:
+  selector:
+    matchLabels:
+      app: "juno"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: juno
+    spec:
+      containers:
+      - name: k8s-juno
+        image: "{{ .Values.image }}:{{ .Values.imageTag }}"
+        imagePullPolicy: "IfNotPresent"
+        env:
+        {{- range .Values.envmap }}
+          - name: {{ .name | quote }}
+            value: {{ .value | quote }}
+        {{- end }}
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            ./setup_and_run.sh juno16g2rahf5846rxzp3fwlswy08fz8ccuwk03k57y
+        # command: ["/bin/sh"]
+        # args: ["-c", "chmod 755 run.sh && run.sh && while true; do echo FluentD Test; sleep 1;done"]
+        # volumeMounts:
+        #   - mountPath: "/root/.aws/"
+        #     name: awscred
+        #     readOnly: true
+      # volumes:
+      #   - name: awscred
+      #     secret:
+      #       secretName: awscred
+      # imagePullSecrets:
+      # - name: regcred
+      # restartPolicy: "Always"

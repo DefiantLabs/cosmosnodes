@@ -1,0 +1,7 @@
+# image: "ghcr.io/defiantlabs/cosmoscontracts/juno"
+image: "juno"
+imageTag: "latest"
+
+# envmap:
+#   - name: PRODUCTION
+#     value: "false"

@@ -1,0 +1,11 @@
+apiVersion: v1
+description: Defiant Labs helm chart for Juno.
+home: https://github.com/DefiantLabs/cosmosnodes
+maintainers:
+- email: danb@defiantlabs.net
+  name: defiant-labs
+name: juno
+version: v1.0.0
+appVersion: v1.0.0
+sources:
+  - https://github.com/DefiantLabs/cosmosnodes/juno
